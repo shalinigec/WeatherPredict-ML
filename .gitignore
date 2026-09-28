@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/.venv/
+.venv/
+env/
+venv/
+ENV/
+*.joblib.bak
+
+# Node & Frontend
+frontend/node_modules/
+node_modules/
+frontend/dist/
+dist/
+dist-ssr/
+frontend/.output/
+.output/
+frontend/.vinxi/
+frontend/.tanstack/**
+frontend/.nitro/
+*.local
+
+# Environment variables
+frontend/.env.local
+backend/.env
+.env.local
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

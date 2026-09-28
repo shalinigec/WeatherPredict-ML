@@ -1,0 +1,134 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sun: var(--sun);
+  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: "DM Sans", sans-serif;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.17 0.045 250);
+  --foreground: oklch(0.94 0.025 230);
+  --card: oklch(0.24 0.045 245 / 0.62);
+  --card-foreground: oklch(0.94 0.025 230);
+  --popover: oklch(0.22 0.045 245);
+  --popover-foreground: oklch(0.94 0.025 230);
+  --primary: oklch(0.68 0.13 225);
+  --primary-foreground: oklch(0.17 0.045 250);
+  --secondary: oklch(0.3 0.05 240);
+  --secondary-foreground: oklch(0.94 0.025 230);
+  --muted: oklch(0.29 0.035 240);
+  --muted-foreground: oklch(0.76 0.045 235);
+  --accent: oklch(0.82 0.105 220);
+  --accent-foreground: oklch(0.17 0.045 250);
+  --destructive: oklch(0.62 0.18 24);
+  --destructive-foreground: oklch(0.95 0.02 25);
+  --border: oklch(0.9 0.035 230 / 0.14);
+  --input: oklch(0.92 0.03 230 / 0.12);
+  --ring: oklch(0.82 0.105 220);
+  --sun: oklch(0.84 0.15 84);
+}
+
+@layer base {
+  * { border-color: var(--color-border); letter-spacing: 0; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background-color: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); }
+  button, a, input, select { outline-color: var(--color-ring); }
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--card) 82%, transparent);
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 70px oklch(0.08 0.03 250 / 0.26);
+  backdrop-filter: blur(22px);
+}
+
+.weather-shell { isolation: isolate; }
+.weather-atmosphere { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.weather-atmosphere::after { content: ""; position: absolute; inset: 0; opacity: .14; background-image: radial-gradient(var(--foreground) .65px, transparent .65px); background-size: 5px 5px; mask-image: linear-gradient(to bottom, black, transparent 72%); }
+.weather-aura { position: absolute; border-radius: 999px; filter: blur(100px); }
+.weather-aura-one { width: 30rem; height: 30rem; left: -12rem; top: -10rem; background: color-mix(in oklab, var(--primary) 48%, transparent); animation: float-one 13s ease-in-out infinite; }
+.weather-aura-two { width: 28rem; height: 28rem; right: -9rem; top: 22rem; background: color-mix(in oklab, var(--accent) 26%, transparent); animation: float-two 17s ease-in-out infinite; }
+.weather-aura-three { width: 34rem; height: 34rem; left: 30%; bottom: -19rem; background: color-mix(in oklab, var(--primary) 22%, transparent); animation: float-one 19s ease-in-out infinite reverse; }
+.weather-cloud { position: absolute; height: 7rem; width: 24rem; border-radius: 999px; background: color-mix(in oklab, var(--foreground) 8%, transparent); filter: blur(40px); }
+.weather-cloud-one { top: 11rem; left: 18%; animation: cloud-drift 24s ease-in-out infinite alternate; }
+.weather-cloud-two { top: 42rem; right: 6%; animation: cloud-drift 32s ease-in-out infinite alternate-reverse; }
+
+.status-pill { display: flex; align-items: center; gap: .5rem; border: 1px solid var(--border); border-radius: 999px; background: color-mix(in oklab, var(--card) 70%, transparent); padding: .55rem .8rem; font-size: .75rem; color: var(--muted-foreground); cursor: pointer; }
+.status-dot { width: .5rem; height: .5rem; border-radius: 999px; background: var(--muted-foreground); }
+.status-online .status-dot { background: oklch(0.76 0.15 160); box-shadow: 0 0 0 .25rem oklch(0.76 0.15 160 / .12); }
+.status-offline .status-dot { background: var(--destructive); }
+.status-checking .status-dot { background: var(--sun); animation: status-pulse 1.2s ease-in-out infinite; }
+.model-pill, .code-pill { border-radius: 999px; background: color-mix(in oklab, var(--accent) 14%, transparent); padding: .4rem .7rem; font-size: .72rem; color: var(--accent); white-space: nowrap; }
+
+.weather-field { display: block; }
+.weather-field > span { display: flex; justify-content: space-between; margin: 0 0 .4rem .15rem; font-size: .68rem; text-transform: uppercase; color: var(--muted-foreground); }
+.weather-field em { font-style: normal; text-transform: none; color: color-mix(in oklab, var(--muted-foreground) 65%, transparent); }
+.weather-field input, .weather-field select { width: 100%; height: 2.85rem; border: 1px solid var(--border); border-radius: .75rem; background: color-mix(in oklab, var(--background) 76%, transparent); padding: 0 .8rem; color: var(--foreground); font-size: .85rem; transition: border-color .2s, box-shadow .2s; }
+.weather-field input:focus, .weather-field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 14%, transparent); outline: none; }
+.weather-field select option { background: var(--popover); }
+
+.result-panel { display: flex; align-items: center; gap: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.25rem; }
+.forecast-orbit { position: relative; display: grid; width: 7.5rem; height: 7.5rem; flex: 0 0 auto; place-items: center; }
+.forecast-ring { position: absolute; border: 1px solid var(--border); border-radius: 999px; }
+.ring-one { inset: 0; animation: orbit-pulse 3s ease-in-out infinite; }
+.ring-two { inset: .75rem; animation: orbit-pulse 3s .2s ease-in-out infinite; }
+.ring-three { inset: 1.5rem; animation: orbit-pulse 3s .4s ease-in-out infinite; }
+.probability-bar { display: block; width: 100%; height: .5rem; overflow: hidden; border: 0; border-radius: 999px; background: var(--input); }
+.probability-bar::-webkit-progress-bar { background: var(--input); border-radius: 999px; }
+.probability-bar::-webkit-progress-value { background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 999px; transition: width .7s ease; }
+.probability-bar::-moz-progress-bar { background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 999px; }
+.model-card { padding: 1.5rem; border-radius: 1.5rem; text-align: left; cursor: pointer; transition: transform .2s, border-color .2s, background .2s; }
+.model-card:hover { transform: translateY(-4px); }
+.model-card-selected { border-color: color-mix(in oklab, var(--accent) 52%, transparent); background: color-mix(in oklab, var(--primary) 16%, var(--card)); }
+.model-mark { display: grid; width: 3rem; height: 3rem; place-items: center; border-radius: 1rem; background: color-mix(in oklab, var(--primary) 18%, transparent); color: var(--accent); font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; }
+.animate-rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+.animate-rise-delay { animation: rise .7s .12s cubic-bezier(.2,.7,.2,1) both; }
+
+@keyframes float-one { 50% { transform: translate3d(1.5rem, -1.5rem, 0); } }
+@keyframes float-two { 50% { transform: translate3d(-1.8rem, 1.2rem, 0); } }
+@keyframes cloud-drift { to { transform: translateX(7rem); } }
+@keyframes status-pulse { 50% { opacity: .35; transform: scale(.75); } }
+@keyframes orbit-pulse { 50% { transform: scale(1.04); border-color: color-mix(in oklab, var(--accent) 30%, transparent); } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 640px) {
+  .status-pill { width: 2.3rem; height: 2.3rem; justify-content: center; padding: 0; font-size: 0; }
+  .result-panel { align-items: flex-start; gap: 1rem; }
+  .forecast-orbit { width: 5rem; height: 5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

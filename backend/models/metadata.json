@@ -1,0 +1,46 @@
+{
+  "features": [
+    "Temperature",
+    "Humidity",
+    "Wind_Speed",
+    "Cloud_Cover",
+    "Pressure"
+  ],
+  "labels": {
+    "0": "no rain",
+    "1": "rain"
+  },
+  "best_model": "Random Forest",
+  "files": {
+    "Decision Tree": "decision_tree.joblib",
+    "Random Forest": "random_forest.joblib",
+    "XGBoost": "xgboost.joblib"
+  },
+  "metrics": {
+    "Decision Tree": {
+      "Test Acc": 0.998,
+      "Precision": 0.9844,
+      "Recall": 1.0,
+      "F1": 0.9921,
+      "ROC-AUC": 0.9989
+    },
+    "Random Forest": {
+      "Test Acc": 1.0,
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "F1": 1.0,
+      "ROC-AUC": 1.0
+    },
+    "XGBoost": {
+      "Test Acc": 0.996,
+      "Precision": 0.9692,
+      "Recall": 1.0,
+      "F1": 0.9844,
+      "ROC-AUC": 1.0
+    }
+  },
+  "versions": {
+    "scikit-learn": "1.6.1",
+    "xgboost": "3.4.1"
+  }
+}
