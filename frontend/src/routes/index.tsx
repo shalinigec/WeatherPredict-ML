@@ -194,7 +194,7 @@ function Index() {
         </section>
 
         <footer className="flex flex-col items-center justify-between gap-3 border-t border-border py-8 text-sm text-muted-foreground sm:flex-row">
-          <p className="font-display text-foreground">Aetheria Weather AI</p><p className="font-mono text-xs">GET /health · POST /predict/model</p><p>Atmospheric intelligence, made visible.</p>
+          <p className="font-display text-foreground">ĀkāśaDrishti Weather AI</p><p className="font-mono text-xs">GET /health · POST /predict/model</p><p>Atmospheric intelligence, made visible.</p>
         </footer>
       </div>
     </main>
