@@ -118,7 +118,7 @@ function Index() {
           <a href="#top" className="flex items-center gap-3" aria-label="Aetheria home">
             <span className="glass grid size-11 place-items-center rounded-2xl text-primary"><CloudSun className="size-5" /></span>
             <span className="leading-tight">
-              <span className="block font-display text-lg font-semibold">ĀkāśaDrishti</span>
+              <span className="block font-display text-lg font-semibold">ĀkāśaDrishti WeatherGPT</span>
               <span className="hidden text-[11px] uppercase text-muted-foreground sm:block">Prediction engine</span>
             </span>
           </a>
@@ -194,7 +194,7 @@ function Index() {
         </section>
 
         <footer className="flex flex-col items-center justify-between gap-3 border-t border-border py-8 text-sm text-muted-foreground sm:flex-row">
-          <p className="font-display text-foreground">ĀkāśaDrishti Weather AI</p><p className="font-mono text-xs">GET /health · POST /predict/model</p><p>Atmospheric intelligence, made visible.</p>
+          <p className="font-display text-foreground">ĀkāśaDrishti WeatherGPT</p><p className="font-mono text-xs">GET /health · POST /predict/model</p><p>Atmospheric intelligence, made visible.</p>
         </footer>
       </div>
     </main>
