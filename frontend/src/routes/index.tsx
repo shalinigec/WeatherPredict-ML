@@ -118,7 +118,7 @@ function Index() {
           <a href="#top" className="flex items-center gap-3" aria-label="Aetheria home">
             <span className="glass grid size-11 place-items-center rounded-2xl text-primary"><CloudSun className="size-5" /></span>
             <span className="leading-tight">
-              <span className="block font-display text-lg font-semibold">Aetheria</span>
+              <span className="block font-display text-lg font-semibold">ĀkāśaDrishti</span>
               <span className="hidden text-[11px] uppercase text-muted-foreground sm:block">Prediction engine</span>
             </span>
           </a>
